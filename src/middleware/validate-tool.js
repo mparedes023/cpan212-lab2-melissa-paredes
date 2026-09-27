@@ -21,7 +21,7 @@ export function validateTool(req, res, next) {
     errors.name = 'name must be 2 to 60 characters';
   }
 
-  // TODO (you): STEP 4. category must be one of CATEGORIES.
+  // STEP 4. category must be one of CATEGORIES.
     if (!CATEGORIES.includes(body.category)) {
     errors.category = 'category must be one of: power, hand, garden, cleaning';
   }

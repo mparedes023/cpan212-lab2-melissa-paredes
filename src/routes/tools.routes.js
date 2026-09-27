@@ -57,4 +57,14 @@ toolsRouter.put('/:id', validateTool, (req, res) => {
   Object.assign(tool,req.body);
   res.json({ data: tool });
 });
-// TODO (you): STEP 7. DELETE /api/tools/:id removes a tool.
+// STEP 7. DELETE /api/tools/:id removes a tool.
+toolsRouter.delete('/:id', (req, res) => {
+  const index = tools.findIndex((tool) => tool.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: { message: 'Tool not found' } });
+  }
+
+  tools.splice(index, 1);
+  res.status(204).end();
+});
