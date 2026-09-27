@@ -1,6 +1,5 @@
 # Tool Library API
-
-<!-- Replace this line with one or two sentences about the project in your own words. -->
+This project is a tool lending library API where the whole library of tools can be viewed with their attributes, a specific tool can be found, a tool can be created, a tool's field can be replaced if needed, or a tool can be removed.
 
 Live: <!-- your Render address, for example https://cpan212-lab2-jane-doe.onrender.com/api/tools -->
 
@@ -34,4 +33,4 @@ This tries every route and prints which checks pass.
 
 ## AI use
 
-<!-- List each AI tool you used and what you used it for, or write "No AI tools used." -->
+AI was used to learn about routing, middleware, and express handling. I am someone who learns well when I have lots of examples to refer to. I took the notes from Week 3 and asked google gemini to make me concise notes and provide learning examples so that I can complete the lab by myself. 
