@@ -22,6 +22,21 @@ export function validateTool(req, res, next) {
   }
 
   // TODO (you): STEP 4. category must be one of CATEGORIES.
+    if (!CATEGORIES.includes(body.category)) {
+    errors.category = 'category must be one of: power, hand, garden, cleaning';
+  }
+
+  if (!CONDITIONS.includes(body.condition)) {
+    errors.condition = 'condition must be one of: new, good, worn';
+  }
+
+  if (typeof body.available !== 'boolean') {
+    errors.available = 'available must be true or false';
+  }
+
+  if (!Number.isInteger(body.maxLoanDays) || body.maxLoanDays < 1 || body.maxLoanDays > 14) {
+    errors.maxLoanDays = 'maxLoanDays must be a whole number from 1 to 14';
+  }
   // TODO (you): STEP 4. condition must be one of CONDITIONS.
   // TODO (you): STEP 4. available must be true or false.
   // TODO (you): STEP 4. maxLoanDays must be a whole number from 1 to 14.
