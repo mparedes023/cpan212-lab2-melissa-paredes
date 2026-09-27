@@ -9,7 +9,7 @@ export const toolsRouter = Router();
 
 // GET /api/tools sends every tool. This route already works.
 
-  // TODO (you): STEP 2. Replace this whole route with the one from the lab page.
+  // STEP 2.
 toolsRouter.get('/', (req, res) => {
   const category = req.query.category;
 
@@ -30,7 +30,7 @@ toolsRouter.get('/', (req, res) => {
   res.json({ data: matching });
 });
 
-// TODO (you): STEP 3. GET /api/tools/:id sends one tool.
+// STEP 3. GET /api/tools/:id sends one tool.
 toolsRouter.get('/:id', (req, res) => {
   const tool = tools.find((tool) => tool.id === req.params.id);
 
@@ -40,12 +40,21 @@ toolsRouter.get('/:id', (req, res) => {
 
   res.json({ data: tool });
 });
-// TODO (you): STEP 5. POST /api/tools adds a tool.
+// STEP 5. POST /api/tools adds a tool.
 toolsRouter.post('/', validateTool, (req, res) => {
   const tool = { id: randomUUID(), ...req.body };
   tools.push(tool);
   res.status(201).json({ data: tool });
 });
-// TODO (you): STEP 6. PUT /api/tools/:id changes a tool.
+// STEP 6. PUT /api/tools/:id changes a tool.
+toolsRouter.put('/:id', validateTool, (req, res) => {
+  const tool = tools.find((tool) => tool.id === req.params.id);
 
+  if (!tool) {
+    return res.status(404).json({ error: { message: 'Tool not found' } });
+  }
+
+  Object.assign(tool,req.body);
+  res.json({ data: tool });
+});
 // TODO (you): STEP 7. DELETE /api/tools/:id removes a tool.
