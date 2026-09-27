@@ -8,9 +8,26 @@ import { validateTool } from '../middleware/validate-tool.js';
 export const toolsRouter = Router();
 
 // GET /api/tools sends every tool. This route already works.
-toolsRouter.get('/', (req, res) => {
+
   // TODO (you): STEP 2. Replace this whole route with the one from the lab page.
-  res.json({ data: tools });
+toolsRouter.get('/', (req, res) => {
+  const category = req.query.category;
+
+  if (category === undefined) {
+    return res.json({ data: tools });
+  }
+
+  if (!CATEGORIES.includes(category)) {
+    return res.status(400).json({
+      error: {
+        message: 'Invalid query',
+        details: { category: 'category must be one of: power, hand, garden, cleaning' },
+      },
+    });
+  }
+
+  const matching = tools.filter((tool) => tool.category === category);
+  res.json({ data: matching });
 });
 
 // TODO (you): STEP 3. GET /api/tools/:id sends one tool.
